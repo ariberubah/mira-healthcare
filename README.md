@@ -122,8 +122,8 @@ Both APIs are free with registration. No credit card required.
 
 ## Author
 
-Built by **Pak Ngatno**
-[Portfolio](https://your-portfolio.com) · [GitHub](https://github.com/username)
+Built by **ARY AKBAR LANANG SURYA KINASIH**
+[GitHub](https://github.com/ariberubah/)
 
 ---
 
