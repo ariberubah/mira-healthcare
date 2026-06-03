@@ -1,4 +1,3 @@
-=======
 # MIRA — Medical Intelligence and Responsive Assistant
 
 > A conversational AI health assistant that helps users understand their symptoms and determine the right next step — before seeing a doctor.
