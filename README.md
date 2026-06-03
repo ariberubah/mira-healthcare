@@ -128,4 +128,4 @@ Built by **ARY AKBAR LANANG SURYA KINASIH**
 ---
 
 *MIRA is not a licensed medical device and does not provide medical advice. Always consult a qualified healthcare professional for medical decisions.*
->>>>>>> d13c67b84a1fcd0f0189d8b57fc225a78c049bd6
+
