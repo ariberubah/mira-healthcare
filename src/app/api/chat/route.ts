@@ -7,6 +7,9 @@ import {
   applyEmergencyOverride,
 } from "@/lib/severity";
 
+// Cegah Vercel memotong function sebelum selesai
+export const maxDuration = 30;
+
 export async function POST(req: NextRequest) {
   const encoder = new TextEncoder();
 
@@ -38,6 +41,10 @@ export async function POST(req: NextRequest) {
           return;
         }
 
+        // Kirim sinyal awal agar koneksi tidak dianggap idle oleh Vercel
+        // selama proses Gemini + ICD enrichment berjalan
+        send({ type: "ack" });
+
         const isEmergency = containsEmergencySymptom(message);
 
         let response = await analyzeSymptomStream(message, history ?? []);
@@ -60,7 +67,7 @@ export async function POST(req: NextRequest) {
         send({
           type: "done",
           variant: response.variant,
-          question: response.question, // ← ganti dari questions
+          question: response.question,
           conditions: response.conditions,
           severity: response.severity,
           advice: response.advice,
@@ -88,6 +95,8 @@ export async function POST(req: NextRequest) {
       "Content-Type": "application/x-ndjson",
       "Transfer-Encoding": "chunked",
       "Cache-Control": "no-cache",
+      "X-Accel-Buffering": "no",  // Matikan buffering di reverse proxy Vercel
+      "Connection": "keep-alive",
     },
   });
 }
